@@ -2,6 +2,7 @@
 body {
   cursor: default;
   -webkit-user-select: none;
+  background: #f7f7cf;
 }
 
 a, a:hover, a:visited, a:active, a:focus {
@@ -11,4 +12,8 @@ a, a:hover, a:visited, a:active, a:focus {
 .main {
   margin-top: 15px;
   text-align: center;
+}
+
+.btn-timer {
+  border-radius: 50%;
 }
