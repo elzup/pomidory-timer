@@ -83,13 +83,19 @@ export class Main extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <button type="button" className="btn-timer" onClick={this.handleStartClicked}>
-          <h2>{this.converter.s2m(this.state.time)}</h2>
-          <div>
-              <span className={"glyphicon glyphicon-" + (this.state.isStart ? "pause" : "play")}></span>
-          </div>
-        </button>
+      <div className="wrapper">
+        <div className="timer-col">
+          <button type="button" className="btn-timer" onClick={this.handleStartClicked}>
+            <h2>{this.converter.s2m(this.state.time)}</h2>
+            <div>
+              <span className={"timer-btn-icon glyphicon glyphicon-" + (this.state.isStart ? "pause" : "play")}></span>
+            </div>
+          </button>
+        </div>
+        <div className="description-col">
+          <span className="tomato-count-icon glyphicon glyphicon-heart"></span>
+          <span className="tomato-count-icon glyphicon glyphicon-heart"></span>
+        </div>
       </div>
     );
   }

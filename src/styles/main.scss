@@ -1,8 +1,14 @@
-
 body {
   cursor: default;
+  -webkit-app-region: drag;
   -webkit-user-select: none;
-  background: #f7f7cf;
+  /* background: #f7f7cf; */
+  background: #fff;
+  /* font-family: "Lato"; */
+}
+
+body *:focus {
+  outline: none;
 }
 
 a, a:hover, a:visited, a:active, a:focus {
@@ -14,6 +20,34 @@ a, a:hover, a:visited, a:active, a:focus {
   text-align: center;
 }
 
+.wrapper {
+  display: flex;
+}
+
 .btn-timer {
+  -webkit-app-region: no-drag;
+  border: solid 1px red;
+  box-shadow: 0px 0px 1px darkred;
   border-radius: 50%;
+  background: white;
+  margin: 10px;
+  width: 160px;
+  height: 160px;
+
+  h2 {
+    font-weight: lighter;
+    font-size: 2.5em;
+  }
+  .timer-btn-icon {
+    font-size: 2em;
+    color: #ff7e2f;
+  }
+}
+
+.description-col {
+  padding: 5px;
+  .tomato-count-icon {
+    color: #ff808d;
+    font-size: 2em;
+  }
 }

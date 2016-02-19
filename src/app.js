@@ -21,7 +21,9 @@ app.on('ready', () => {
   //Menu.setApplicationMenu(appMenu);
   mainWindow = new BrowserWindow({
     width: 291,
-    height: 180
+    height: 180,
+    transparent: true,
+    frame: false
   });
   mainWindow.loadUrl('file://' + __dirname + '/renderer/index.html');
 });
