@@ -11,6 +11,7 @@ export class Main extends React.Component {
     this.state = {
       isStart: false,
       isBreak: false,
+      counter: [2, 2],
       time: this.props.duration
     };
     this.handleStartClicked = ::this.handleStartClicked;
@@ -21,7 +22,10 @@ export class Main extends React.Component {
   handleStartClicked() {
     if (!this.state.isStart) {
       this.interval = setInterval(this.tick, 1000);
-      this.setState({isStart: true});
+      this.setState({ isStart: true });
+      if (this.state.counter.indexOf(0) == -1) {
+        this.setState({ counter: this.state.counter.concat([0]) });
+      }
     } else {
       clearInterval(this.interval);
       this.setState({isStart: false});
@@ -53,6 +57,7 @@ export class Main extends React.Component {
     this.setState({
       isStart: true,
       isBreak: true,
+      counter: (this.state.counter.slice(0, this.state.counter.length - 1)).concat([1]),
       time: this.props.breakTime
     });
   }
@@ -62,6 +67,7 @@ export class Main extends React.Component {
     this.setState({
       isStart: false,
       isBreak: false,
+      counter: (this.state.counter.slice(0, this.state.counter.length - 1)).concat([2]),
       time: this.props.duration
     });
   }
@@ -81,6 +87,10 @@ export class Main extends React.Component {
     }
   };
 
+  countGraphicon(n) {
+    return ['play-circle', '', 'ok']
+  };
+
   render() {
     return (
       <div className="wrapper">
@@ -93,6 +103,10 @@ export class Main extends React.Component {
           </button>
         </div>
         <div className="description-col">
+          {this.state.counter.map(function(e) {
+                return <span className={"tomato-count-icon glyphicon glyphicon-" + (e == 0 ? "play-circle" : "ok")}></span>;
+              }
+          )}
         </div>
       </div>
     );
@@ -100,6 +114,6 @@ export class Main extends React.Component {
 }
 
 Main.defaultProps = {
-  duration: 60,
-  breakTime: 300
+  duration: 5,
+  breakTime: 5
 };
