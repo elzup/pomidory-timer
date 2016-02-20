@@ -12,7 +12,7 @@ export class Main extends React.Component {
       isStart: false,
       isBreak: false,
       time: this.props.duration
-    }
+    };
     this.handleStartClicked = ::this.handleStartClicked;
     this.handleResetClicked = ::this.handleResetClicked;
     this.tick = ::this.tick;
@@ -68,7 +68,7 @@ export class Main extends React.Component {
 
   notify(message) {
     notifier.notify({
-      'title': 'Pomodoro Timer',
+      'title': 'Pomidory Timer',
       'message': message
     });
   }
@@ -85,7 +85,7 @@ export class Main extends React.Component {
     return (
       <div className="wrapper">
         <div className="timer-col">
-          <button type="button" className="btn-timer" onClick={this.handleStartClicked}>
+          <button type="button" className={"btn-timer " + (this.state.isBreak ? "time-break" : "time-play")} onClick={this.handleStartClicked}>
             <h2>{this.converter.s2m(this.state.time)}</h2>
             <div>
               <span className={"timer-btn-icon glyphicon glyphicon-" + (this.state.isStart ? "pause" : "play")}></span>
@@ -93,8 +93,6 @@ export class Main extends React.Component {
           </button>
         </div>
         <div className="description-col">
-          <span className="tomato-count-icon glyphicon glyphicon-heart"></span>
-          <span className="tomato-count-icon glyphicon glyphicon-heart"></span>
         </div>
       </div>
     );
@@ -102,6 +100,6 @@ export class Main extends React.Component {
 }
 
 Main.defaultProps = {
-  duration: 1500,
+  duration: 60,
   breakTime: 300
 };
