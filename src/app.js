@@ -21,7 +21,7 @@ app.on('ready', () => {
   //Menu.setApplicationMenu(appMenu);
   mainWindow = new BrowserWindow({
     width: 291,
-    height: 180,
+    height: 70,
     transparent: true,
     frame: false
   });

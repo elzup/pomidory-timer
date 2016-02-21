@@ -98,7 +98,7 @@ export class Main extends React.Component {
         <div className="timer-col">
           <button type="button" className={"btn-timer " + (this.state.isBreak ? "time-break" : "time-play")} onClick={this.handleStartClicked}>
             <h2>{this.converter.s2m(this.state.time)}</h2>
-            <div>
+            <div className="icon-wrap">
               <FontAwesome className="timer-btn-icon" name={this.state.isStart ? "pause" : "play"} />
             </div>
           </button>
@@ -116,5 +116,7 @@ export class Main extends React.Component {
 
 Main.defaultProps = {
   duration: 5,
-  breakTime: 5
+  breakTime: 60 * 5
+//   duration: 60 * 25,
+//   breakTime: 60 * 5
 };
