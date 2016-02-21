@@ -1,4 +1,4 @@
-# electron-jsx-babel-boilerplate
+# pomidory-timer
 
 This is a sample repository of [Electron](http://electron.atom.io/) application.
 
@@ -14,7 +14,7 @@ This boilerplate includes the following build tasks:
 Clone this repository, so execute the following command.
 
 ```bash
-cd electron-jsx-babel-boilerplate
+cd pomidory-timer
 npm install -g bower gulp electron-prebuilt
 npm install
 ```
