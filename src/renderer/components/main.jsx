@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 import shell from 'shell';
 import notifier from 'node-notifier'
 
@@ -88,7 +89,7 @@ export class Main extends React.Component {
   };
 
   countGraphicon(n) {
-    return ['play-circle', '', 'ok']
+    return
   };
 
   render() {
@@ -98,13 +99,13 @@ export class Main extends React.Component {
           <button type="button" className={"btn-timer " + (this.state.isBreak ? "time-break" : "time-play")} onClick={this.handleStartClicked}>
             <h2>{this.converter.s2m(this.state.time)}</h2>
             <div>
-              <span className={"timer-btn-icon glyphicon glyphicon-" + (this.state.isStart ? "pause" : "play")}></span>
+              <FontAwesome className="timer-btn-icon" name={this.state.isStart ? "pause" : "play"} />
             </div>
           </button>
         </div>
         <div className="description-col">
-          {this.state.counter.map(function(e) {
-                return <span className={"tomato-count-icon glyphicon glyphicon-" + (e == 0 ? "play-circle" : "ok")}></span>;
+          {this.state.counter.map(function(n) {
+                return <FontAwesome className="tomato-count-icon" name={['play-circle-o', 'coffee', 'check'][n]} />;
               }
           )}
         </div>

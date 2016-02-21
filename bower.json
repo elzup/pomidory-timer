@@ -1,5 +1,5 @@
 {
-  "name": "electron-jsx-babel-boilerplate",
+  "name": "pomidory-timer",
   "version": "1.0.0",
   "authors": [
     "Quramy"
@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "3.3.4"
+    "bootstrap": "3.3.4",
+    "font-awesome": "~4.5.0"
   }
 }

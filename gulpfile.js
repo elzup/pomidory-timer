@@ -20,6 +20,7 @@ var srcDir      = 'src';      // source directory
 var serveDir    = '.serve';   // directory for serve task
 var distDir     = 'dist';     // directory for serve:dist task
 var releaseDir  = 'release';  // directory for application packages
+// var nodeModulesDir = '...';
 
 // Compile *.scss files with sourcemaps
 gulp.task('compile:styles', function () {
@@ -89,6 +90,7 @@ gulp.task('html', ['inject:css'], function () {
 gulp.task('copy:fonts', function () {
   return gulp.src('bower_components/**/fonts/*.woff')
     .pipe($.flatten())
+    .pipe(gulp.dest(serveDir + '/fonts'))
     .pipe(gulp.dest(distDir + '/fonts'))
   ;
 });
