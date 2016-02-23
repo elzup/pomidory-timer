@@ -24,7 +24,7 @@ export class Main extends React.Component {
     if (!this.state.isStart) {
       this.interval = setInterval(this.tick, 1000);
       this.setState({ isStart: true });
-      if (this.state.counter.indexOf(0) == -1) {
+      if (this.state.counter == 0 || this.state.counter[this.state.counter.length - 1] == 2) {
         this.setState({ counter: this.state.counter.concat([0]) });
       }
     } else {
@@ -47,10 +47,10 @@ export class Main extends React.Component {
   finishEvent() {
     if (this.state.isBreak) {
       this.reset();
-      this.notify('Break is over!');
+      this.notify('休憩時間終了です！');
     } else {
       this.break();
-      this.notify('Good work!');
+      this.notify('お疲れ様です！休憩時間です');
     }
   }
 
@@ -75,8 +75,9 @@ export class Main extends React.Component {
 
   notify(message) {
     notifier.notify({
-      'title': 'Pomidory Timer',
-      'message': message
+      title: 'Pomidory Timer',
+      message: message,
+      wait: true
     });
   }
 
