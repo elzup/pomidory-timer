@@ -3,8 +3,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import shell from 'shell';
-import notifier from 'node-notifier'
-import howler from 'howler'
+import notifier from 'node-notifier';
+import howler from 'howler';
 
 export class Main extends React.Component {
 
