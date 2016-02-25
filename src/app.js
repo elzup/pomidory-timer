@@ -25,6 +25,7 @@ app.on('ready', () => {
     transparent: true,
     frame: false
   });
+  mainWindow.setResizable(false);
+  mainWindow.setAlwaysOnTop(true);
   mainWindow.loadUrl('file://' + __dirname + '/renderer/index.html');
 });
-
