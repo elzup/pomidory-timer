@@ -95,6 +95,15 @@ gulp.task('copy:fonts', function () {
   ;
 });
 
+// Copy audios file.
+gulp.task('copy:audios', function () {
+  return gulp.src(srcDir + '/assets/audios/*.wav')
+      .pipe($.flatten())
+      .pipe(gulp.dest(serveDir + '/audios'))
+      .pipe(gulp.dest(distDir + '/audios'))
+      ;
+});
+
 // Minify dependent modules.
 gulp.task('bundle:dependencies', function () {
   var streams = [], dependencies = [];
@@ -193,7 +202,7 @@ gulp.task('serve', ['inject:css', 'compile:scripts:watch', 'compile:styles', 'mi
   gulp.watch([serveDir + '/styles/**/*.css', serveDir + '/renderer/**/*.html', serveDir + '/renderer/**/*.js'], electron.reload);
 });
 
-gulp.task('build', ['html', 'compile:scripts', 'packageJson', 'copy:fonts', 'misc']);
+gulp.task('build', ['html', 'compile:scripts', 'packageJson', 'copy:fonts', 'copy:audios', 'misc']);
 
 gulp.task('serve:dist', ['build'], function () {
   electronServer.create({path: distDir}).start();
