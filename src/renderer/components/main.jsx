@@ -128,9 +128,14 @@ export class Main extends React.Component {
   }
 }
 
-Main.defaultProps = {
-  duration: 5,
-  breakTime: 60 * 5
-//   duration: 60 * 25,
-//   breakTime: 60 * 5
-};
+if (process.env.NODE_ENV == 'development') {
+  Main.defaultProps = {
+    duration: 10,
+    breakTime: 10
+  };
+} else {
+  Main.defaultProps = {
+    duration: 60 * 25,
+    breakTime: 60 * 5
+  };
+}

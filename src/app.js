@@ -8,7 +8,7 @@ import Menu from 'menu';
 import appMenu from './browser/menu/appMenu';
 
 let mainWindow = null;
-if(process.env.NODE_ENV === 'develop'){
+if(process.env.NODE_ENV === 'development'){
   crashReporter.start();
   //appMenu.append(devMenu);
 }
