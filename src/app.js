@@ -44,7 +44,7 @@ app.on('ready', () => {
   ]);
   // メニューアイコン設定
   // appIcon = new Tray(null);
-  appIcon = new Tray(__dirname + '/assets/images/icon.png');
+  appIcon = new Tray(__dirname + '/assets/images/icon-tray.png');
   appIcon.setContextMenu(contextMenu);
   // アイコンにマウスオーバーした時の説明
   appIcon.setToolTip('This is sample.');
