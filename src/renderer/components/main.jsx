@@ -49,10 +49,11 @@ export class Main extends React.Component {
     if (this.state.isBreak) {
       this.reset();
       this.notify('休憩時間終了です！');
+      this.playSoundfile('megumin_mega.wav');
     } else {
       this.break();
       this.notify('お疲れ様です！休憩時間です');
-      this.playSound();
+      this.playSoundfile('megumin_stop.wav');
     }
   }
 
@@ -83,9 +84,9 @@ export class Main extends React.Component {
     });
   }
 
-  playSound() {
+  playSoundfile(filename) {
     var sound = new Howl({
-      urls: ['../audios/megumin_stop.wav'],
+      urls: ['../audios/' + filename],
       autoplay: true,
       volume: 0.5,
       onend: function() {
@@ -130,8 +131,8 @@ export class Main extends React.Component {
 
 if (process.env.NODE_ENV == 'development') {
   Main.defaultProps = {
-    duration: 10,
-    breakTime: 10
+    duration: 5,
+    breakTime: 5
   };
 } else {
   Main.defaultProps = {
