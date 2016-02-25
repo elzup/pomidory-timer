@@ -4,6 +4,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import shell from 'shell';
 import notifier from 'node-notifier'
+import howler from 'howler'
 
 export class Main extends React.Component {
 
@@ -51,6 +52,7 @@ export class Main extends React.Component {
     } else {
       this.break();
       this.notify('お疲れ様です！休憩時間です');
+      this.playSound();
     }
   }
 
@@ -78,6 +80,17 @@ export class Main extends React.Component {
       title: 'Pomidory Timer',
       message: message,
       wait: true
+    });
+  }
+
+  playSound() {
+    var sound = new Howl({
+      urls: ['../audios/megumin_stop.wav'],
+      autoplay: true,
+      volume: 0.5,
+      onend: function() {
+        console.log('Finished!');
+      }
     });
   }
 
