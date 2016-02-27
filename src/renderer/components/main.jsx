@@ -124,10 +124,19 @@ export class Main extends React.Component {
           </button>
         </div>
         <div className="description-col">
-          {this.state.counter.map(function(n) {
-                return <FontAwesome className="tomato-count-icon" name={['play-circle-o', 'coffee', 'check'][n]} />;
-              }
-          )}
+          <div className="checks">
+            {this.state.counter.map(function(n) {
+                  return <FontAwesome className="tomato-count-icon" name={['play-circle-o', 'coffee', 'check'][n]} />;
+                }
+            )}
+          </div>
+        </div>
+        <div className="navigations-col">
+          <div className="navigations">
+            <FontAwesome className="navigations-forward" name="map-pin" />
+            <FontAwesome className="navigations-skip" name="fast-forward" />
+            <FontAwesome className="navigations-dragable" name="arrows-alt" />
+          </div>
         </div>
       </div>
     );
@@ -136,7 +145,7 @@ export class Main extends React.Component {
 
 if (process.env.NODE_ENV == 'development') {
   Main.defaultProps = {
-    startCount: 3,
+    startCount: 12,
     duration: 5,
     breakTime: 5
   };
