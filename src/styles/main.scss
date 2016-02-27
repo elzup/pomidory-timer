@@ -95,13 +95,13 @@ a, a:hover, a:visited, a:active, a:focus {
 
   .navigations {
     color: lightgray;
-    .navigations-skip[active] {
-      &:hover {
+    &-skip {
+      &.active:hover {
         color: orange;
       }
     }
-    .navigations-forward[active] {
-      &:hover {
+    &-forward {
+      &.active:hover {
         color: orange;
       }
     }

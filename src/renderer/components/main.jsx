@@ -103,9 +103,10 @@ export class Main extends React.Component {
     }
   };
 
-  countGraphicon(n) {
-    return
-  };
+  isSkipable() {
+    return true;
+    // return this.state.isBreak || this.state.isStart;
+  }
 
   render() {
     return (
@@ -126,7 +127,13 @@ export class Main extends React.Component {
         <div className="description-col">
           <div className="checks">
             {this.state.counter.map(function(n) {
-                  return <FontAwesome className="tomato-count-icon" name={['play-circle-o', 'coffee', 'check'][n]} />;
+                  if (n == 0) {
+                    return <FontAwesome className="tomato-count-icon" name="play-circle-o"/>;
+                  } else if (n == 1) {
+                    return <FontAwesome className="tomato-count-icon" name="coffee" spin />;
+                  } else {
+                    return <FontAwesome className="tomato-count-icon" name="check" />;
+                  }
                 }
             )}
           </div>
@@ -134,11 +141,10 @@ export class Main extends React.Component {
         <div className="navigations-col">
           <div className="navigations">
             <FontAwesome
-                className="navigations-forward"
-                active={}
+                className={"navigations-forward" + " "+ (true ? "active" : "")}
                 name="map-pin" />
             <FontAwesome
-                className="navigations-skip"
+                className={"navigations-skip" + " " + (this.isSkipable() ? "active" : "")}
                 name="fast-forward" />
             <FontAwesome
                 className="navigations-dragable"
