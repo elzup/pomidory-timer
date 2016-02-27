@@ -13,7 +13,7 @@ export class Main extends React.Component {
     this.state = {
       isStart: false,
       isBreak: false,
-      counter: [2, 2],
+      counter: Array(this.props.startCount).fill(2),
       time: this.props.duration
     };
     this.handleStartClicked = ::this.handleStartClicked;
@@ -131,11 +131,13 @@ export class Main extends React.Component {
 
 if (process.env.NODE_ENV == 'development') {
   Main.defaultProps = {
+    startCount: 3,
     duration: 5,
     breakTime: 5
   };
 } else {
   Main.defaultProps = {
+    startCount: 0,
     duration: 60 * 25,
     breakTime: 60 * 5
   };
