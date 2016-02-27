@@ -133,9 +133,16 @@ export class Main extends React.Component {
         </div>
         <div className="navigations-col">
           <div className="navigations">
-            <FontAwesome className="navigations-forward" name="map-pin" />
-            <FontAwesome className="navigations-skip" name="fast-forward" />
-            <FontAwesome className="navigations-dragable" name="arrows-alt" />
+            <FontAwesome
+                className="navigations-forward"
+                active={}
+                name="map-pin" />
+            <FontAwesome
+                className="navigations-skip"
+                name="fast-forward" />
+            <FontAwesome
+                className="navigations-dragable"
+                name="arrows-alt" />
           </div>
         </div>
       </div>
@@ -145,7 +152,7 @@ export class Main extends React.Component {
 
 if (process.env.NODE_ENV == 'development') {
   Main.defaultProps = {
-    startCount: 12,
+    startCount: 13,
     duration: 5,
     breakTime: 5
   };

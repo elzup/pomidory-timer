@@ -10,7 +10,10 @@ body {
   /* background: rgba(255, 255, 255, 0.8); */
   &:hover {
     .navigations-col {
-      border-left: solid 1px black;
+      border-left: solid 1px #ddd;
+    }
+    .navigations-dragable {
+      color: orange !important;
     }
   }
 }
@@ -88,15 +91,16 @@ a, a:hover, a:visited, a:active, a:focus {
   padding-left: 6px;
   border-left: solid 1px white;
   width: 1.2em;
+  text-align: center;
 
   .navigations {
-
-    .navigations-skip {
+    color: lightgray;
+    .navigations-skip[active] {
       &:hover {
         color: orange;
       }
     }
-    .navigations-forward {
+    .navigations-forward[active] {
       &:hover {
         color: orange;
       }
