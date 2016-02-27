@@ -3,8 +3,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import shell from 'shell';
-import notifier from 'node-notifier'
-import howler from 'howler'
+import notifier from 'node-notifier';
+import howler from 'howler';
 
 export class Main extends React.Component {
 
@@ -49,10 +49,11 @@ export class Main extends React.Component {
     if (this.state.isBreak) {
       this.reset();
       this.notify('休憩時間終了です！');
+      this.playSoundfile('megumin_mega.wav');
     } else {
       this.break();
       this.notify('お疲れ様です！休憩時間です');
-      this.playSound();
+      this.playSoundfile('megumin_stop.wav');
     }
   }
 
@@ -83,9 +84,9 @@ export class Main extends React.Component {
     });
   }
 
-  playSound() {
+  playSoundfile(filename) {
     var sound = new Howl({
-      urls: ['../audios/megumin_stop.wav'],
+      urls: ['../audios/' + filename],
       autoplay: true,
       volume: 0.5,
       onend: function() {
@@ -128,9 +129,14 @@ export class Main extends React.Component {
   }
 }
 
-Main.defaultProps = {
-  duration: 5,
-  breakTime: 60 * 5
-//   duration: 60 * 25,
-//   breakTime: 60 * 5
-};
+if (process.env.NODE_ENV == 'development') {
+  Main.defaultProps = {
+    duration: 5,
+    breakTime: 5
+  };
+} else {
+  Main.defaultProps = {
+    duration: 60 * 25,
+    breakTime: 60 * 5
+  };
+}
