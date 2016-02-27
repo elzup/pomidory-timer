@@ -46,6 +46,12 @@ a, a:hover, a:visited, a:active, a:focus {
     border-color: #4E2800;
   }
 
+  &.time-pause {
+    h2 {
+      color: gray;
+    }
+  }
+
   .icon-wrap {
     padding: 8px 18px;
   }

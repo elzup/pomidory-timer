@@ -111,7 +111,12 @@ export class Main extends React.Component {
     return (
       <div className="wrapper">
         <div className="timer-col">
-          <button type="button" className={"btn-timer " + (this.state.isBreak ? "time-break" : "time-play")} onClick={this.handleStartClicked}>
+          <button
+              type="button"
+              className={"btn-timer "
+              + (this.state.isBreak ? "time-break" : "time-play") + " "
+              + (this.state.isStart ? "time-start" : "time-pause")}
+              onClick={this.handleStartClicked}>
             <h2>{this.converter.s2m(this.state.time)}</h2>
             <div className="icon-wrap">
               <FontAwesome className="timer-btn-icon" name={this.state.isStart ? "pause" : "play"} />
