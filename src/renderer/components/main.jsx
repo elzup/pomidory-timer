@@ -13,7 +13,7 @@ export class Main extends React.Component {
     this.state = {
       isStart: false,
       isBreak: false,
-      counter: [2, 2],
+      counter: Array(this.props.startCount).fill(2),
       time: this.props.duration
     };
     this.handleStartClicked = ::this.handleStartClicked;
@@ -103,15 +103,21 @@ export class Main extends React.Component {
     }
   };
 
-  countGraphicon(n) {
-    return
-  };
+  isSkipable() {
+    return true;
+    // return this.state.isBreak || this.state.isStart;
+  }
 
   render() {
     return (
       <div className="wrapper">
         <div className="timer-col">
-          <button type="button" className={"btn-timer " + (this.state.isBreak ? "time-break" : "time-play")} onClick={this.handleStartClicked}>
+          <button
+              type="button"
+              className={"btn-timer "
+              + (this.state.isBreak ? "time-break" : "time-play") + " "
+              + (this.state.isStart ? "time-start" : "time-pause")}
+              onClick={this.handleStartClicked}>
             <h2>{this.converter.s2m(this.state.time)}</h2>
             <div className="icon-wrap">
               <FontAwesome className="timer-btn-icon" name={this.state.isStart ? "pause" : "play"} />
@@ -119,10 +125,31 @@ export class Main extends React.Component {
           </button>
         </div>
         <div className="description-col">
-          {this.state.counter.map(function(n) {
-                return <FontAwesome className="tomato-count-icon" name={['play-circle-o', 'coffee', 'check'][n]} />;
-              }
-          )}
+          <div className="checks">
+            {this.state.counter.map(function(n) {
+                  if (n == 0) {
+                    return <FontAwesome className="tomato-count-icon" name="play-circle-o"/>;
+                  } else if (n == 1) {
+                    return <FontAwesome className="tomato-count-icon" name="coffee" spin />;
+                  } else {
+                    return <FontAwesome className="tomato-count-icon" name="check" />;
+                  }
+                }
+            )}
+          </div>
+        </div>
+        <div className="navigations-col">
+          <div className="navigations">
+            <FontAwesome
+                className={"navigations-forward" + " "+ (true ? "active" : "")}
+                name="map-pin" />
+            <FontAwesome
+                className={"navigations-skip" + " " + (this.isSkipable() ? "active" : "")}
+                name="fast-forward" />
+            <FontAwesome
+                className="navigations-dragable"
+                name="arrows-alt" />
+          </div>
         </div>
       </div>
     );
@@ -131,11 +158,13 @@ export class Main extends React.Component {
 
 if (process.env.NODE_ENV == 'development') {
   Main.defaultProps = {
+    startCount: 13,
     duration: 5,
     breakTime: 5
   };
 } else {
   Main.defaultProps = {
+    startCount: 0,
     duration: 60 * 25,
     breakTime: 60 * 5
   };

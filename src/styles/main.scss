@@ -8,6 +8,14 @@ body {
   background: #fff;
   /* font-family: "Lato"; */
   /* background: rgba(255, 255, 255, 0.8); */
+  &:hover {
+    .navigations-col {
+      border-left: solid 1px #ddd;
+    }
+    .navigations-dragable {
+      color: orange !important;
+    }
+  }
 }
 
 body *:focus {
@@ -46,6 +54,12 @@ a, a:hover, a:visited, a:active, a:focus {
     border-color: #4E2800;
   }
 
+  &.time-pause {
+    h2 {
+      color: gray;
+    }
+  }
+
   .icon-wrap {
     padding: 8px 18px;
   }
@@ -61,9 +75,35 @@ a, a:hover, a:visited, a:active, a:focus {
 }
 
 .description-col {
-  padding: 5px;
-  .tomato-count-icon {
-    color: #461b00;
-    font-size: 1em;
+  padding: 5px 2px 5px;
+  width: 6.6em;
+
+  .checked {
+    .tomato-count-icon {
+      color: #461b00;
+      font-size: 1em;
+    }
+  }
+}
+
+.navigations-col {
+  padding-top: 5px;
+  padding-left: 6px;
+  border-left: solid 1px white;
+  width: 1.2em;
+  text-align: center;
+
+  .navigations {
+    color: lightgray;
+    &-skip {
+      &.active:hover {
+        color: orange;
+      }
+    }
+    &-forward {
+      &.active:hover {
+        color: orange;
+      }
+    }
   }
 }
