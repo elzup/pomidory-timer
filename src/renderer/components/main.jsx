@@ -11,30 +11,34 @@ export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isStart: false,
+      isProgress: false,
+      isStart: true,
       isBreak: false,
       counter: Array(this.props.startCount).fill(2),
       time: this.props.duration
     };
     this.handleStartClicked = ::this.handleStartClicked;
-    this.handleResetClicked = ::this.handleResetClicked;
+    this.handleSkipClicked = ::this.handleSkipClicked;
     this.tick = ::this.tick;
   }
 
   handleStartClicked() {
-    if (!this.state.isStart) {
+    if (!this.state.isProgress) {
       this.interval = setInterval(this.tick, 1000);
-      this.setState({ isStart: true });
+      this.setState({
+        isProgress: true,
+        isStart: false
+      });
       if (this.state.counter == 0 || this.state.counter[this.state.counter.length - 1] == 2) {
         this.setState({ counter: this.state.counter.concat([0]) });
       }
     } else {
       clearInterval(this.interval);
-      this.setState({isStart: false});
+      this.setState({isProgress: false});
     }
   }
 
-  handleResetClicked() {
+  handleSkipClicked() {
     this.reset();
   }
 
@@ -59,7 +63,7 @@ export class Main extends React.Component {
 
   break() {
     this.setState({
-      isStart: true,
+      isProgress: true,
       isBreak: true,
       counter: (this.state.counter.slice(0, this.state.counter.length - 1)).concat([1]),
       time: this.props.breakTime
@@ -69,8 +73,9 @@ export class Main extends React.Component {
   reset() {
     clearInterval(this.interval);
     this.setState({
-      isStart: false,
+      isProgress: false,
       isBreak: false,
+      isStart: true,
       counter: (this.state.counter.slice(0, this.state.counter.length - 1)).concat([2]),
       time: this.props.duration
     });
@@ -104,8 +109,7 @@ export class Main extends React.Component {
   };
 
   isSkipable() {
-    return true;
-    // return this.state.isBreak || this.state.isStart;
+    return ! this.state.isStart;
   }
 
   render() {
@@ -116,11 +120,11 @@ export class Main extends React.Component {
               type="button"
               className={"btn-timer "
               + (this.state.isBreak ? "time-break" : "time-play") + " "
-              + (this.state.isStart ? "time-start" : "time-pause")}
+              + (this.state.isProgress ? "time-start" : "time-pause")}
               onClick={this.handleStartClicked}>
             <h2>{this.converter.s2m(this.state.time)}</h2>
             <div className="icon-wrap">
-              <FontAwesome className="timer-btn-icon" name={this.state.isStart ? "pause" : "play"} />
+              <FontAwesome className="timer-btn-icon" name={this.state.isProgress ? "pause" : "play"} />
             </div>
           </button>
         </div>
@@ -145,6 +149,7 @@ export class Main extends React.Component {
                 name="map-pin" />
             <FontAwesome
                 className={"navigations-skip" + " " + (this.isSkipable() ? "active" : "")}
+                onClick={this.handleSkipClicked}
                 name="fast-forward" />
             <FontAwesome
                 className="navigations-dragable"
