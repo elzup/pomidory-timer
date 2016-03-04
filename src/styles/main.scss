@@ -1,5 +1,9 @@
 @import "../../node_modules/font-awesome/scss/font-awesome";
 
+$active_link_color: black;
+$active_link_hover_color: orange;
+$passive_link_color: lightgray;
+
 body {
   cursor: default;
   -webkit-app-region: drag;
@@ -94,15 +98,21 @@ a, a:hover, a:visited, a:active, a:focus {
   text-align: center;
 
   .navigations {
-    color: lightgray;
+    color: $passive_link_color;
+    &-dragable {
+      color: $active_link_color;
+    }
     &-skip {
-      &.active:hover {
-        color: orange;
+      &.active{
+        color: $active_link_color;
+        &:hover {
+          color: $active_link_hover_color;
+        }
       }
     }
     &-forward {
       &.active:hover {
-        color: orange;
+        color: $active_link_hover_color;
       }
     }
   }

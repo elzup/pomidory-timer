@@ -4,14 +4,18 @@ import app from 'app';
 import Menu from 'menu';
 import MenuItem from 'menu-item';
 
-let template = [{
-  label: 'Electron App',
-  submenu: [{
-    label: 'Quit',
-    accelerator: 'Command+Q',
-    click: function () {app.quit()}
-  }]
-}];
+let template = [
+  {
+    label: 'Pomidory Timer',
+    submenu: [
+      {
+        label: 'Quit',
+        accelerator: 'Command+Q',
+        click: function () {app.quit()}
+      }
+    ]
+  }
+];
 
 let appMenu = Menu.buildFromTemplate(template);
 
