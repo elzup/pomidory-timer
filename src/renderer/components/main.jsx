@@ -112,6 +112,11 @@ export class Main extends React.Component {
     return ! this.state.isStart;
   }
 
+  isForward() {
+    return true;
+    // return mainWindow.isAlwaysOnTop();
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -145,7 +150,7 @@ export class Main extends React.Component {
         <div className="navigations-col">
           <div className="navigations">
             <FontAwesome
-                className={"navigations-forward" + " "+ (true ? "active" : "")}
+                className={"navigations-forward" + " "+ (this.isForward() ? "active" : "")}
                 name="map-pin" />
             <FontAwesome
                 className={"navigations-skip" + " " + (this.isSkipable() ? "active" : "")}

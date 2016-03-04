@@ -4,9 +4,11 @@ require('babel/polyfill');
 import app from 'app';
 import BrowserWindow from 'browser-window';
 import crashReporter from 'crash-reporter';
-import appMenu from './browser/menu/appMenu';
 import Tray from 'tray';
 import Menu from 'menu';
+import MenuItem from 'menu-item';
+import appMenu from './browser/menu/appMenu';
+// import mainWindow from './browser/mainWindow';
 
 let mainWindow = null;
 let appIcon = null;
@@ -20,7 +22,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
-  // Menu.setApplicationMenu(appMenu);
   mainWindow = new BrowserWindow({
     width: 291,
     height: 70,
@@ -31,22 +32,27 @@ app.on('ready', () => {
   mainWindow.setAlwaysOnTop(true);
   mainWindow.loadUrl('file://' + __dirname + '/renderer/index.html');
 
+  // TODO: only darwin -> support other os
+  appMenu.append(new MenuItem({
+      label: 'View',
+      submenu: [{
+          label: 'Reset',
+          accelerator: 'Command+R',
+          click: function() { mainWindow.restart(); }
+      }, {
+          label: 'Fixed',
+          click: function() { mainWindow.setAlwaysOnTop(!mainWindow.isAlwaysOnTop()); }
+      }]
+  }));
 
-  var contextMenu = Menu.buildFromTemplate([
-    {label: '選択メニュー1', type: 'radio'},
-    {label: '選択メニュー2', type: 'radio'},
-    {type: 'separator'},
-    {label: 'サブメニュー', submenu: [
-      {label: 'サブメニュー1'},
-      {label: 'サブメニュー2'}
-    ]},
-    {label: '終了', accelerator: 'Command+Q', click: function() { app.quit(); }}
-  ]);
   // メニューアイコン設定
   // appIcon = new Tray(null);
   appIcon = new Tray(__dirname + '/assets/images/icon-tray.png');
-  appIcon.setContextMenu(contextMenu);
   // アイコンにマウスオーバーした時の説明
   appIcon.setToolTip('This is sample.');
 
+  Menu.setApplicationMenu(appMenu);
+  appIcon.setContextMenu(appMenu);
 });
+
+// module.exports = mainWindow;
