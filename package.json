@@ -2,7 +2,7 @@
   "name": "pomidory-timer",
   "version": "1.0.0",
   "description": "Pomodoro timer by elzup",
-  "main": ".serve/app.js",
+  "main": ".serve/main.js",
   "scripts": {
     "install": "bower install",
     "start": "gulp serve",
