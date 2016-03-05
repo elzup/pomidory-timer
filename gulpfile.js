@@ -174,6 +174,7 @@ gulp.task('package', ['win32', 'darwin', 'linux'].map(function (platform) {
   gulp.task(taskName, ['build'], function (done) {
     packager({
       dir: distDir,
+      icon: distDir + "/assets/images/pomidory-timer.icns",
       name: 'Pomidory Timer',
       arch: 'x64',
       platform: platform,
