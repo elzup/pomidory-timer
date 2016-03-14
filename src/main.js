@@ -8,7 +8,6 @@ import Tray from 'tray';
 import Menu from 'menu';
 import MenuItem from 'menu-item';
 import appMenu from './browser/menu/appMenu';
-import mainWindow from './browser/mainWindow';
 
 let mainWindow = null;
 let appIcon = null;
@@ -30,7 +29,7 @@ app.on('ready', () => {
   });
   mainWindow.setResizable(false);
   mainWindow.setAlwaysOnTop(true);
-  mainWindow.loadUrl('file://' + __dirname + '/renderer/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/renderer/index.html');
 
   // TODO: only darwin -> support other os
   appMenu.append(new MenuItem({
@@ -46,7 +45,6 @@ app.on('ready', () => {
   }));
 
   // メニューアイコン設定
-  appIcon = new Tray(null);
   appIcon = new Tray(__dirname + '/assets/images/icon-tray.png');
   // アイコンにマウスオーバーした時の説明
   appIcon.setToolTip('This is sample.');

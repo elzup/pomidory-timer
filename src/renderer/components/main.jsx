@@ -85,6 +85,7 @@ export class Main extends React.Component {
     notifier.notify({
       title: 'Pomidory Timer',
       message: message,
+      sound: 'Glass',
       wait: true
     });
   }
