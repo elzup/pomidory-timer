@@ -108,7 +108,7 @@ gulp.task('copy:audios', function () {
 gulp.task('bundle:dependencies', function () {
   var streams = [], dependencies = [];
   var defaultModules = ['assert', 'buffer', 'console', 'constants', 'crypto', 'domain', 'events', 'http', 'https', 'os', 'path', 'punycode', 'querystring', 'stream', 'string_decoder', 'timers', 'tty', 'url', 'util', 'vm', 'zlib'],
-      electronModules = ['app', 'auto-updater', 'browser-window', 'content-tracing', 'dialog', 'global-shortcut', 'ipc', 'menu', 'menu-item', 'power-monitor', 'protocol', 'tray', 'remote', 'web-frame', 'clipboard', 'crash-reporter', 'native-image', 'screen', 'shell'];
+      electronModules = ['app', 'auto-updater', 'browser-window', 'content-tracing', 'dialog', 'global-shortcut', 'ipc', 'menu', 'menu-item', 'power-monitor', 'protocol', 'tray', 'web-frame', 'clipboard', 'crash-reporter', 'native-image', 'screen', 'shell'];
 
   // Because Electron's node integration, bundle files don't need to include browser-specific shim.
   var excludeModules = defaultModules.concat(electronModules);

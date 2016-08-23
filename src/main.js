@@ -8,7 +8,12 @@ let appMenu = Menu.buildFromTemplate(MenuConfig);
 let mainWindow = null;
 let appIcon = null;
 if (process.env.NODE_ENV === 'development') {
-  crashReporter.start();
+  crashReporter.start({
+    productName: 'PomidoryTimer',
+    companyName: 'elzup',
+    submitURL: 'submit.elzup.com',
+    autoSubmit: true
+  });
   // appMenu.append(devMenu);
 }
 
