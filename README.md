@@ -1,29 +1,24 @@
-# pomidory-timer
+# Pomidory Timer
 
-This is a sample repository of [Electron](http://electron.atom.io/) application.
+Electron 製のポモロード用タイマー
 
-This boilerplate includes the following build tasks:
+![PomidoryTimer.gif](https://raw.githubusercontent.com/elzup/pomidory-timer/master/readme-img/PomidoryTimer.gif)
 
-* Transpillation [React](https://facebook.github.io/react/) JSX and ES6 style JavaScript files with [Babel](https://babeljs.io/)
-* Compilation scss files
-* Livereload when you change source files
-* Packaging distribution apllicatoins for each platforms(win32, darwin, linux)
+* 最前面にピン留め
+* タイマースキップ
+* つまんで動かすのが楽
 
 ## Install
-
-Clone this repository, so execute the following command.
-
-```bash
-cd pomidory-timer
-npm install -g bower gulp electron-prebuilt
-npm install
-```
 
 ## Run application
 ### With file watch and livereload
 
 ```bash
-gulp serve
+# development config
+NODE_ENV=development npm start
+
+# production config
+npm start
 ```
 
 ### Pre-packaging app
@@ -69,4 +64,3 @@ gulp boilerplate -o {DIST_DIR}
   gulpfile.js
   package.json
 ```
-
