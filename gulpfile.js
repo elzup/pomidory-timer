@@ -86,7 +86,7 @@ gulp.task('html', ['inject:css'], function () {
   ;
 });
 
-// Copy fonts file. You don't need to copy *.ttf nor *.svg nor *.otf.
+// Copy fapponts file. You don't need to copy *.ttf nor *.svg nor *.otf.
 gulp.task('copy:fonts', function () {
   return gulp.src('bower_components/**/fonts/*.woff')
     .pipe($.flatten())
@@ -108,7 +108,7 @@ gulp.task('copy:audios', function () {
 gulp.task('bundle:dependencies', function () {
   var streams = [], dependencies = [];
   var defaultModules = ['assert', 'buffer', 'console', 'constants', 'crypto', 'domain', 'events', 'http', 'https', 'os', 'path', 'punycode', 'querystring', 'stream', 'string_decoder', 'timers', 'tty', 'url', 'util', 'vm', 'zlib'],
-      electronModules = ['app', 'auto-updater', 'browser-window', 'content-tracing', 'dialog', 'global-shortcut', 'ipc', 'menu', 'menu-item', 'power-monitor', 'protocol', 'tray', 'remote', 'web-frame', 'clipboard', 'crash-reporter', 'native-image', 'screen', 'shell'];
+      electronModules = ['app', 'auto-updater', 'browser-window', 'content-tracing', 'dialog', 'global-shortcut', 'ipc', 'menu', 'menu-item', 'power-monitor', 'protocol', 'tray', 'web-frame', 'clipboard', 'crash-reporter', 'native-image', 'screen', 'shell'];
 
   // Because Electron's node integration, bundle files don't need to include browser-specific shim.
   var excludeModules = defaultModules.concat(electronModules);
@@ -128,7 +128,7 @@ gulp.task('bundle:dependencies', function () {
     }else{
       main = [packageJson.main];
     }
-    return {name: dep, main: main.map(function (it) {return path.basename(it);})};
+    return {name: dep, main: main};
   });
 
   // add babel/polyfill module
@@ -162,7 +162,7 @@ gulp.task('bundle:dependencies', function () {
 // Write a package.json for distribution
 gulp.task('packageJson', ['bundle:dependencies'], function (done) {
   var json = _.cloneDeep(packageJson);
-  json.main = 'app.js';
+  json.main = 'main.js';
   fs.writeFile(distDir + '/package.json', JSON.stringify(json), function (err) {
     done();
   });
@@ -174,11 +174,12 @@ gulp.task('package', ['win32', 'darwin', 'linux'].map(function (platform) {
   gulp.task(taskName, ['build'], function (done) {
     packager({
       dir: distDir,
-      name: 'ElectronApp',
+      icon: distDir + "/assets/images/pomidory-timer.icns",
+      name: 'Pomidory Timer',
       arch: 'x64',
       platform: platform,
       out: releaseDir + '/' + platform,
-      version: '0.28.1'
+      version: '1.3.4'
     }, function (err) {
       done();
     });
@@ -198,7 +199,7 @@ gulp.task('serve', ['inject:css', 'compile:scripts:watch', 'compile:styles', 'mi
   electron.start();
   gulp.watch(['bower.json', srcDir + '/renderer/index.html'], ['inject:css']);
   gulp.watch(srcDir + '/styles/**/*.scss', ['inject:css']);
-  gulp.watch([serveDir + '/app.js', serveDir + '/browser/**/*.js'], electron.restart);
+  gulp.watch([serveDir + '/main.js', serveDir + '/browser/**/*.js'], electron.restart);
   gulp.watch([serveDir + '/styles/**/*.css', serveDir + '/renderer/**/*.html', serveDir + '/renderer/**/*.js'], electron.reload);
 });
 
