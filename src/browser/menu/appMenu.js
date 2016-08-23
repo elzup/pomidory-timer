@@ -1,10 +1,7 @@
 'use strict';
 
-import app from 'app';
-import Menu from 'menu';
-import MenuItem from 'menu-item';
-
-let template = [
+import {app} from 'electron';
+export const MenuConfig = [
   {
     label: 'Pomidory Timer',
     submenu: [
@@ -16,7 +13,7 @@ let template = [
     ]
   }
 ];
-
-let appMenu = Menu.buildFromTemplate(template);
-
-module.exports = appMenu;
+//
+// let appMenu = Menu.buildFromTemplate(template);
+//
+// module.exports = appMenu;

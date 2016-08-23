@@ -179,7 +179,7 @@ gulp.task('package', ['win32', 'darwin', 'linux'].map(function (platform) {
       arch: 'x64',
       platform: platform,
       out: releaseDir + '/' + platform,
-      version: '0.28.1'
+      version: '1.3.4'
     }, function (err) {
       done();
     });

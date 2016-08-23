@@ -88,12 +88,10 @@ export class Main extends React.Component {
   }
 
   playSoundfile(filename) {
-    var sound = new Howl({
+    const sound = new Howl({
       urls: ['../audios/' + filename],
       autoplay: true,
-      onend: function () {
-        console.log('Finished!');
-      }
+      onend: function () { }
     });
   }
 

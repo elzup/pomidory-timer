@@ -1,13 +1,9 @@
 'use strict';
 require('babel/polyfill');
 
-import app from 'app';
-import BrowserWindow from 'browser-window';
-import crashReporter from 'crash-reporter';
-import Tray from 'tray';
-import Menu from 'menu';
-import MenuItem from 'menu-item';
-import appMenu from './browser/menu/appMenu';
+import {app, BrowserWindow, crashReporter, Tray, Menu, MenuItem} from 'electron';
+import {MenuConfig} from './browser/menu/appMenu';
+let appMenu = Menu.buildFromTemplate(MenuConfig);
 
 let mainWindow = null;
 let appIcon = null;
@@ -27,9 +23,10 @@ app.on('ready', () => {
     transparent: true,
     frame: false
   });
+  mainWindow.webContents.openDevTools();
+  mainWindow.loadURL('file://' + __dirname + '/renderer/index.html');
   mainWindow.setResizable(false);
   mainWindow.setAlwaysOnTop(true);
-  mainWindow.loadURL('file://' + __dirname + '/renderer/index.html');
 
   // TODO: only darwin -> support other os
   appMenu.append(
