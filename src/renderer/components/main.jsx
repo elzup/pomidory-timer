@@ -1,10 +1,8 @@
 'use strict';
 
-import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import shell from 'shell';
-import notifier from 'node-notifier';
-import howler from 'howler';
+import React from "react";
+import FontAwesome from "react-fontawesome";
+import notifier from "node-notifier";
 
 export class Main extends React.Component {
 
@@ -30,7 +28,7 @@ export class Main extends React.Component {
         isStart: false
       });
       if (this.state.counter == 0 || this.state.counter[this.state.counter.length - 1] == 2) {
-        this.setState({ counter: this.state.counter.concat([0]) });
+        this.setState({counter: this.state.counter.concat([0])});
       }
     } else {
       clearInterval(this.interval);
@@ -53,11 +51,11 @@ export class Main extends React.Component {
     if (this.state.isBreak) {
       this.reset();
       this.notify('休憩時間終了です！');
-      this.playSoundfile('megumin_mega.wav');
+      this.playSoundfile('end.mp3');
     } else {
       this.break();
       this.notify('お疲れ様です！休憩時間です');
-      this.playSoundfile('megumin_stop.wav');
+      this.playSoundfile('alert.mp3');
     }
   }
 
@@ -85,7 +83,6 @@ export class Main extends React.Component {
     notifier.notify({
       title: 'Pomidory Timer',
       message: message,
-      sound: 'Glass',
       wait: true
     });
   }
@@ -94,8 +91,7 @@ export class Main extends React.Component {
     var sound = new Howl({
       urls: ['../audios/' + filename],
       autoplay: true,
-      volume: 0.5,
-      onend: function() {
+      onend: function () {
         console.log('Finished!');
       }
     });
@@ -110,7 +106,7 @@ export class Main extends React.Component {
   };
 
   isSkipable() {
-    return ! this.state.isStart;
+    return !this.state.isStart;
   }
 
   isForward() {
@@ -123,43 +119,47 @@ export class Main extends React.Component {
       <div className="wrapper">
         <div className="timer-col">
           <button
-              type="button"
-              className={"btn-timer "
-              + (this.state.isBreak ? "time-break" : "time-play") + " "
-              + (this.state.isProgress ? "time-start" : "time-pause")}
-              onClick={this.handleStartClicked}>
+            type="button"
+            className={"btn-timer "
+            + (this.state.isBreak ? "time-break" : "time-play") + " "
+            + (this.state.isProgress ? "time-start" : "time-pause")}
+            onClick={this.handleStartClicked}>
             <h2>{this.converter.s2m(this.state.time)}</h2>
             <div className="icon-wrap">
-              <FontAwesome className="timer-btn-icon" name={this.state.isProgress ? "pause" : "play"} />
+              <FontAwesome className="timer-btn-icon"
+                           name={this.state.isProgress ? "pause" : "play"}/>
             </div>
           </button>
         </div>
         <div className="description-col">
           <div className="checks">
-            {this.state.counter.map(function(n) {
-                  if (n == 0) {
-                    return <FontAwesome className="tomato-count-icon" name="play-circle-o"/>;
-                  } else if (n == 1) {
-                    return <FontAwesome className="tomato-count-icon" name="coffee" spin />;
-                  } else {
-                    return <FontAwesome className="tomato-count-icon" name="check" />;
-                  }
+            {this.state.counter.map(function (n) {
+                if (n == 0) {
+                  return <FontAwesome className="tomato-count-icon"
+                                      name="play-circle-o"/>;
+                } else if (n == 1) {
+                  return <FontAwesome className="tomato-count-icon" name="coffee"
+                                      spin/>;
+                } else {
+                  return <FontAwesome className="tomato-count-icon"
+                                      name="check"/>;
                 }
+              }
             )}
           </div>
         </div>
         <div className="navigations-col">
           <div className="navigations">
             <FontAwesome
-                className={"navigations-forward" + " "+ (this.isForward() ? "active" : "")}
-                name="map-pin" />
+              className={"navigations-forward" + " " + (this.isForward() ? "active" : "")}
+              name="map-pin"/>
             <FontAwesome
-                className={"navigations-skip" + " " + (this.isSkipable() ? "active" : "")}
-                onClick={this.handleSkipClicked}
-                name="fast-forward" />
+              className={"navigations-skip" + " " + (this.isSkipable() ? "active" : "")}
+              onClick={this.handleSkipClicked}
+              name="fast-forward"/>
             <FontAwesome
-                className="navigations-dragable"
-                name="arrows-alt" />
+              className="navigations-dragable"
+              name="arrows-alt"/>
           </div>
         </div>
       </div>
